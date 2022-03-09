@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+
+.submit {
+      cursor: pointer;
+        border-radius: 5em;
+        color: #fff;
+        background: linear-gradient(to right, #5565aa, #5565aa);
+        border: 0;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        font-family: 'Ubuntu', sans-serif;
+        margin-left: 10%;
+        font-size: 13px;
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+body {
+        background-color: #ebf3f6;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    .diva {
+  padding: 25px 50px 75px 100px;
+      }
+.topnav {
+  overflow: hidden;
+  background-color: #5565aa;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav b {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #5555aa;
+  color: white;
+}
+.main {
+        background-color: #FFFFFF;
+        width: 490px;
+        height: 400px auto;
+        
+        margin: 2em auto;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+    }
+    form.form1 {
+        padding-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  
+  <a id = "home" onclick="Home()" >Home</a>
+  <a id = "view" href="/stuAffiers/{{usr}}/view/a/b">View</a>
+  <a id = "view" href="/stuAffiers/{{usr}}/viewSTU/a/b">STU</a>
+
+  
+  <a style="float: right;" id = "Logout" href="/logout""> Logout</a>
+  <b  style=" color: #000; float: right;">Hi: {{usr}} !</b>
+  
+</div>
+                {% if msg %} 
+                <h1>{{msg}}</h1>
+                {% endif %} 
+
+                <div class="main - diva"  id="addv" >
+                    
+                    <form class="form1" action="/studentAffairs" method="post">
+                        <input type="text"  name="type1" value="2" hidden  >
+                        <label for="css">Teacher Assistant </label>
+                        <select name="TA" id="css" class="submit" style="padding-left: 65px; padding-right: 65px;" >
+                            {%for i in range(0, x) %}
+                            <option value="{{TA[i].email}}" style="background-color: rgba(9, 9, 238, 0.52)">{{TA[i].name}}</option>
+                            {% endfor %}
+                         </select>
+                                <br> <br>
+                         <label for="tt">Course </label>
+                         <select name="course" id="tt" class="submit" style="margin-left: 25%;" >
+                            {%for i in range(0, y) %}
+                            <option value="{{course[i].code +','+course[i].name}}" style="background-color: rgba(9, 9, 238, 0.52)" >{{course[i].name}}</option>
+                            {% endfor %}
+                         </select><br><br>
+                        <button class="submit" type="submit" style="margin-left: 15%;" >Asgin Course</button>
+                  
+                      </form>
+                        
+                        <hr>
+                        <br>
+                        <h3>Upload Student </h3>
+                        <br>
+                      <form action = "/studentAffairs" method = "post" enctype="multipart/form-data">  
+                        <input type="text"  name="type1" value="1" hidden  >
+                        <input class="submit" type="file" name="file" required /> 
+                        <br> <br> 
+                        <input class="submit" type = "submit" value="Upload">  
+                    </form>
+
+                    <hr>
+                    <br>
+                    <h3>Upload Student Registration </h3>
+                    <br>
+                  <form action = "/studentAffairs" method = "post" enctype="multipart/form-data">  
+                    <input type="text"  name="type1" value="3" hidden  >
+                    <input class="submit" type="file" name="file" required /> 
+                    <br> <br> 
+                    <input class="submit" type = "submit" value="Upload">  
+                </form>
+                </div>
+
+                
+                
+                    
+                </div>
+<script>
+            
+                    function Home() {
+                        document.getElementById("addv").innerHTML = '      <form class="form1" action="/studentAffairs" method="post">                         <input type="text"  name="type1" value="2" hidden  >                         <label for="css">Teacher Assistant </label>                         <select name="TA" id="css" class="submit" style="padding-left: 65px; padding-right: 65px;" >                             {%for i in range(0, x) %}                             <option value="{{TA[i].name}}">{{TA[i].name}}</option>                             {% endfor %}                          </select>                                 <br> <br>                          <label for="tt">Course </label>                          <select name="course" id="tt" class="submit" style="margin-left: 25%;" >                             {%for i in range(0, y) %}                             <option value="{{course[i].name}}">{{course[i].name}}</option>                             {% endfor %}                          </select><br><br>                         <button class="submit" type="submit" style="margin-left: 15%;" >Asgin Course</button>                                          </form>                                                  <hr>                         <br>                         <h3>Upload Student </h3>                         <br>                       <form action = "/studentAffairs" method = "post" enctype="multipart/form-data">                           <input type="text"  name="type1" value="1" hidden  >                         <input class="submit" type="file" name="file"  required />                          <br> <br>                          <input class="submit" type = "submit" value="Upload">                       </form>';
+                          
+
+
+                    }
+</script>
+</body>
+</html>  

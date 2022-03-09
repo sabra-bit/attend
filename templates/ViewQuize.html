@@ -1,0 +1,138 @@
+
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      a:hover {
+        background-color: rgb(255, 21, 0);
+      }
+      
+      .submit {
+            cursor: pointer;
+              border-radius: 5em;
+              color: #fff;
+              background: linear-gradient(to right, #5565aa, #5565aa);
+              border: 0;
+              padding-left: 40px;
+              padding-right: 40px;
+              padding-bottom: 10px;
+              padding-top: 10px;
+              font-family: 'Ubuntu', sans-serif;
+              margin-left: 10%;
+              font-size: 13px;
+              box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+          }
+      body {
+              background-color: #ebf3f6;
+              font-family: 'Ubuntu', sans-serif;
+          }
+          .diva {
+        padding: 25px 50px 75px 10px;
+            }
+      .topnav {
+        overflow: hidden;
+        background-color: #5565aa;
+      }
+      
+      .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      .topnav b {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      
+      .topnav a.active {
+        background-color: #5555aa;
+        color: white;
+      }
+      .main {
+              background-color: #FFFFFF;
+              width: 590px ;
+              height: 400px auto;
+              
+              margin: 1em auto;
+              border-radius: 1.5em;
+              box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+          }
+          form.form1 {
+              padding-top: 40px;
+          }
+         table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+  
+      ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: wheat;
+    opacity: 1; /* Firefox */
+  }
+  
+      </style>
+    </head>
+    <body>
+    
+      <div class="topnav">
+  
+        <a href="/teacherAssistant">Home</a>
+        <a href="/Quiz">Quiz</a>
+        
+        <a style="float: right;" id = "Logout" href="/logout"> Logout</a>
+        <b  style=" color: #000; float: right;">Hi: {{usr}} !</b>
+      </div>
+      Print : <input type="button" id="myInput" value="Print" onclick="divPrinting()">
+      <div id = "PDF" class="main - diva" id="addv" style="overflow-y: scroll; height: 400px;" >
+        
+        
+        <h2>{{usr}}</h2>
+
+        <table>
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Mark</th>
+            </tr>
+
+            {% for i in range(0, le) %}
+            <tr>
+              <td>{{X[i].stu}}</td>
+              <td>{{X[i].stuName}}</td>
+              <td>{{X[i].mark}}</td>
+            </tr>
+            {% endfor %}
+          </table> 
+        
+        
+    </div>
+    <script type="text/javascript">
+     
+      function divPrinting(){
+      var divContents = document.getElementById("PDF").innerHTML; 
+            var a = window.open('', '', 'left=40','top=40','height=500', 'width=500'); 
+            a.document.write('<html>'); 
+            a.document.write('<head> <title> document-printed-by-javascript </title> </head>'); 
+            a.document.write('<body>'); 
+            a.document.write(divContents); 
+            a.document.write('</body></html>'); 
+            a.document.close(); 
+            a.print();
+      }
+    </script>
+    
+    
+    </body>
+    </html>
+    
